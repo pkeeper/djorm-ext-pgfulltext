@@ -12,7 +12,7 @@ class Command(BaseCommand):
     args = "appname"
     
     def add_arguments(self, parser):
-        parser.add_argument('appname', nargs='+', type=str)
+        parser.add_argument('appname', nargs=1, type=str)
 
     def handle(self, *args, **options):
         if not 'appname' in options.keys():
