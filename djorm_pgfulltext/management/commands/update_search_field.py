@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 """
 Update search fields.
 """
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 from django.core.management.base import BaseCommand, CommandError
 from django.core.exceptions import ImproperlyConfigured
 from django.apps import apps
@@ -21,7 +22,7 @@ class Command(BaseCommand):
         # check application
 
         try:
-            app_module = apps.get_app_config(options['appname'])
+            app_module = apps.get_app_config(options['appname'][0])
         except ImproperlyConfigured:
             raise CommandError("There is no enabled application matching '%s'." % options['appname'])
 
