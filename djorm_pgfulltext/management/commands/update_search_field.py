@@ -9,7 +9,10 @@ from django.apps import apps
 
 class Command(BaseCommand):
     help = 'Update search fields'
-    args = "appname [model]"
+    args = "appname"
+    
+    def add_arguments(self, parser):
+        parser.add_argument('appname', nargs='+', type=int)
 
     def handle(self, app=None, model=None, **options):
         if not app:
