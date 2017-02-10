@@ -14,16 +14,16 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('appname', nargs='+', type=str)
 
-    def handle(self, app=None, model=None, **options):
-        if not app:
+    def handle(self, *args, **options):
+        if not 'appname' in options.keys():
             raise CommandError("You must provide an app to update search fields.")
 
         # check application
 
         try:
-            app_module = apps.get_app_config(app)
+            app_module = apps.get_app_config(options['appname'])
         except ImproperlyConfigured:
-            raise CommandError("There is no enabled application matching '%s'." % app)
+            raise CommandError("There is no enabled application matching '%s'." % options['appname'])
 
         app_models = []
 
